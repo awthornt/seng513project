@@ -105,17 +105,19 @@
 
 <h3>Comments</h3>
 <input id='showcomments' type='button' value='Show/Hide Comments'>
-<div id='comment'>
+<div id='comments'>
 {{#comments}}
+    <div id='comment{{iCommentid))'>
 	<p>Created by: <a href="/viewProfile?id={{iCommentCreatorId}}" id="user_profile"> {{iCommentCreatorName}} </a> at {{iCommentCreatedTime}}</p>
 	<p><input type="{{iButtonType}}" onClick="location.href='/editComments?cid={{iCommentId}}&iid={{iIssueId}}'" value="Edit" />
 	<input type="{{iButtonType}}" onClick="location.href='/deleteComments?cid={{iCommentId}}&iid={{iIssueId}}'" value="Delete" /></p>
 	{{iCommentContent}}<br><br>
+	</div>
 {{/comments}}
 </div>
 <script type='text/javascript'>
 	$("#showcomments").css({position: 'relative'}).click(function(){
-		$("#comment").toggle();
+		$("#comments").toggle();
 		this.hide();
 	});
 </script>
@@ -123,8 +125,9 @@
 <h3>Add Your Comment Here</h3>
 <form action="addcomments" method="post">
 <p><textarea name="comments" rows="8" cols="50"></textarea></p>
-<p><input type="submit" value="Submit Your Comment" /></p>
+<p><input id="add" type="submit" value="Submit Your Comment" /></p>
 </form>
+
 {{/found}}
 {{^found}}
 <h1>Issue not found!</h1>
